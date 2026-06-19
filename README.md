@@ -46,32 +46,22 @@ finetune-lab/
 Run, edit, and create notebooks on a Colab GPU **from anywhere** — browser,
 VS Code, or the command line.
 
-| Method | How to Connect | Interactive | Programmatic |
-|--------|---------------|:-----------:|:------------:|
-| **Jupyter + Cloudflare** | `notebooks/setup/colab-server-tunnel.ipynb` | ✅ Browser | ✅ API |
-| **VS Code Remote Tunnel** | `notebooks/setup/colab-server-vscode.ipynb` | ✅ IDE | ❌ |
-| **GitHub Link** | Click any notebook's `[Open In Colab]` badge | ✅ Colab | ❌ |
+**Quick Open** — click any notebook to launch it in Colab immediately:
 
-**From CLI (after tunnel is up):**
-```bash
-pip install requests websocket-client
-export COLAB_URL="https://xxx.trycloudflare.com"
+| Notebook | Colab Link |
+|----------|------------|
+| QLoRA Fine-Tuning (Qwen2.5-7B) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ghassan-gaidi/finetune-lab/blob/main/notebooks/lora/example_qlora_colab.ipynb) |
+| DPO Alignment | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ghassan-gaidi/finetune-lab/blob/main/notebooks/pref/example_dpo_colab.ipynb) |
+| Jupyter Lab Tunnel (Cloudflare) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ghassan-gaidi/finetune-lab/blob/main/notebooks/setup/colab-server-tunnel.ipynb) |
+| VS Code Remote Tunnel | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ghassan-gaidi/finetune-lab/blob/main/notebooks/setup/colab-server-vscode.ipynb) |
 
-# List files on Colab VM
-python3 scripts/colab-client.py --url $COLAB_URL ls
+**The workflow:**
+1. Click a badge → Colab opens the notebook live from GitHub
+2. Set runtime to **T4 GPU** (Runtime → Change runtime type → T4)
+3. Run all cells — deps install automatically
+4. Save results to Drive / push back to GitHub
 
-# Execute code on Colab's GPU
-python3 scripts/colab-client.py --url $COLAB_URL exec \
-    "import torch; print(torch.cuda.get_device_name(), torch.cuda.is_available())"
-
-# Upload + run a notebook remotely
-python3 scripts/colab-client.py --url $COLAB_URL run notebooks/lora/example_qlora_colab.ipynb
-
-# Create a new notebook
-python3 scripts/colab-client.py --url $COLAB_URL create experiments/new-ft.ipynb
-```
-
-📘 Full guide → [`research/colab-connect.md`](research/colab-connect.md)
+📘 Full comparison of all methods → [`research/colab-connect.md`](research/colab-connect.md)
 
 ---
 
