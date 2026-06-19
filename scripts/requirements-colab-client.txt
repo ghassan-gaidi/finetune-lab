@@ -1,0 +1,3 @@
+# Colab remote client dependencies
+requests
+websocket-client

@@ -22,17 +22,56 @@ finetune-lab/
 ├── notebooks/              # Jupyter notebooks — drop into Colab & run
 │   ├── lora/              # LoRA / QLoRA fine-tuning
 │   ├── full/              # Full parameter fine-tuning
-│   └── pref/              # Preference alignment (DPO, GRPO, ORPO)
+│   ├── pref/              # Preference alignment (DPO, GRPO, ORPO)
+│   └── setup/             # Colab remote connection notebooks
+│       ├── colab-server-tunnel.ipynb   # Jupyter + Cloudflare tunnel
+│       └── colab-server-vscode.ipynb   # VS Code Remote Tunnel
 ├── research/              # Findings, technique analysis, comparisons
 │   ├── techniques.md      # Deep dives into fine-tuning methods
-│   └── platforms.md       # Free GPU platform comparisons
-├── scripts/               # Utility scripts (conversion, merging, eval)
+│   ├── platforms.md       # Free GPU platform comparisons
+│   └── colab-connect.md   # 📘 Full guide: remote Colab access methods
+├── scripts/               # Utility scripts
+│   └── colab-client.py    # CLI client for remote Jupyter API calls
 ├── data/                  # Dataset notes, preprocessing, preparation
 │   └── datasets.md        # Dataset catalogue & prep workflows
 ├── configs/               # YAML/JSON hyperparameter templates
 │   └── hyperparameters/   # Per-model configs (llama, mistral, qwen, etc.)
 └── cache/                 # Local cache for models/datasets (gitignored)
 ```
+
+---
+
+## 🔌 Remote Colab Access
+
+Run, edit, and create notebooks on a Colab GPU **from anywhere** — browser,
+VS Code, or the command line.
+
+| Method | How to Connect | Interactive | Programmatic |
+|--------|---------------|:-----------:|:------------:|
+| **Jupyter + Cloudflare** | `notebooks/setup/colab-server-tunnel.ipynb` | ✅ Browser | ✅ API |
+| **VS Code Remote Tunnel** | `notebooks/setup/colab-server-vscode.ipynb` | ✅ IDE | ❌ |
+| **GitHub Link** | Click any notebook's `[Open In Colab]` badge | ✅ Colab | ❌ |
+
+**From CLI (after tunnel is up):**
+```bash
+pip install requests websocket-client
+export COLAB_URL="https://xxx.trycloudflare.com"
+
+# List files on Colab VM
+python3 scripts/colab-client.py --url $COLAB_URL ls
+
+# Execute code on Colab's GPU
+python3 scripts/colab-client.py --url $COLAB_URL exec \
+    "import torch; print(torch.cuda.get_device_name(), torch.cuda.is_available())"
+
+# Upload + run a notebook remotely
+python3 scripts/colab-client.py --url $COLAB_URL run notebooks/lora/example_qlora_colab.ipynb
+
+# Create a new notebook
+python3 scripts/colab-client.py --url $COLAB_URL create experiments/new-ft.ipynb
+```
+
+📘 Full guide → [`research/colab-connect.md`](research/colab-connect.md)
 
 ---
 
