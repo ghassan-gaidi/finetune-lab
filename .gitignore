@@ -1,0 +1,32 @@
+# .gitignore
+# Colab / Jupyter cache
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+__pycache__/
+*.pyc
+
+# Data & checkpoints
+data/cache/*
+*.safetensors
+*.bin
+*.pt
+*.pth
+checkpoints/
+outputs/
+runs/
+
+# Environment
+.env
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Wandb
+wandb/
+
+# HF cache
+.huggingface/
+.cache/huggingface/
