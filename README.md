@@ -41,10 +41,26 @@ finetune-lab/
 
 ---
 
-## 🔌 Remote Colab Access
+## Agentic Datasets
 
-Run, edit, and create notebooks on a Colab GPU **from anywhere** — browser,
-VS Code, or the command line.
+Research-backed catalog of the **best public datasets for training agentic LLMs**
+— tool calling, multi-step reasoning, agent traces, and function calling.
+
+| Tier | Focus | Top Datasets |
+|------|-------|-------------|
+| ★ — Agent Traces | Reasoning + tool use | `lambda/hermes-agent-reasoning-traces`, `DJLougen/hermes-agent-traces-filtered` |
+| ★★ — Function Calling | Tool dispatch accuracy | `glaiveai/glaive-function-calling-v2`, `NousResearch/hermes-function-calling-v1` |
+| ★★★ — Agent Instruction | Reasoning depth | `microsoft/orca-agentinstruct-1M-v1`, `zai-org/AgentInstruct` |
+
+The QLoRA notebook uses a **customisable dataset mix** — edit the `DATASET_MIX`
+array to change ratios, add/remove sources.
+
+→ Full catalog at [`data/datasets.md`](data/datasets.md)
+
+## Remote Colab Access
+
+One-click method to connect your local machine to a Colab runtime for
+interactive development while training runs.
 
 **Quick Open** — click any notebook to launch it in Colab immediately:
 
